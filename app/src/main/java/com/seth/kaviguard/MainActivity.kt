@@ -1,3 +1,4 @@
+import android.app.Activity
 package com.seth.kaviguard
 
 import android.os.Bundle
@@ -5,7 +6,6 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import kotlin.concurrent.thread
 
 /**
@@ -22,7 +22,7 @@ import kotlin.concurrent.thread
  * (revoking permissions, clearing another app's cache, uninstalling)
  * deep-link to the right Settings page instead.
  */
-class MainActivity : AppCompatActivity() {
+class MainActivity : Activity() {
 
     private lateinit var output: TextView
 

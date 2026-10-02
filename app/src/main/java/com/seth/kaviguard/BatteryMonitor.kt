@@ -41,7 +41,11 @@ object BatteryMonitor {
         }
 
         val cycles: Int? = if (Build.VERSION.SDK_INT >= 34) {
-            val c = bm.getIntProperty(BatteryManager.BATTERY_PROPERTY_CYCLE_COUNT)
+            // BATTERY_PROPERTY_CYCLE_COUNT (=7) via reflection; absent from compile SDK
+            val propId = try {
+                BatteryManager::class.java.getField("BATTERY_PROPERTY_CYCLE_COUNT").getInt(null)
+            } catch (e: Exception) { 7 }
+            val c = bm.getIntProperty(propId)
             if (c == Int.MIN_VALUE || c < 0) null else c
         } else null
 
