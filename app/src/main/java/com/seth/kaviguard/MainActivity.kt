@@ -41,7 +41,7 @@ class MainActivity : Activity() {
         setContentView(scroll)
 
         layout.addView(TextView(this).apply {
-            text = "KaviGuard Android v1.0.5"
+            text = "KaviGuard Android v" + UpdateManager.installedVersion(this@MainActivity)
             textSize = 22f
         })
         layout.addView(TextView(this).apply {
@@ -72,6 +72,9 @@ class MainActivity : Activity() {
         btn("Sketchy App Detector") { runAsync { showSketchy() } }
         btn("Storage Analyzer") { runAsync { showStorage() } }
         btn("Battery Health") { runAsync { showBattery() } }
+        btn("Check for Updates") { UpdateManager.checkNow(this) }
+
+        UpdateManager.onAppLaunch(this)
 
         output = TextView(this).apply {
             textSize = 13f
